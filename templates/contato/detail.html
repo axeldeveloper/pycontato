@@ -1,0 +1,10 @@
+<h1>{{ contato.nome }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'agenda:vote' contato.id %}" method="post">
+{% csrf_token %}
+    <label for="choice{{ contato.id }}">{{ choice.choice_text }}</label><br />
+    <input type="radio" name="choice" id="choice{{ contato.id }}" value="{{ contato.id }}" />
+<input type="submit" value="Vote" />
+</form>

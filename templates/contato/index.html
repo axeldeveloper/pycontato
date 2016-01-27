@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="col-md-12">
+        <h2>
+            Lista de <small> Contatos </small>
+        </h2>
+        {% if contato_list %}
+            <table class="table table-striped">
+                <tr>
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                    <th>Site</th>
+                    <th colspan="2">#</th>
+                </tr>
+            {% for person in contato_list %}
+                <tr>
+                    <td>{{person.nome}}</td>
+                    <td>{{person.telefone}}</td>
+                    <td>{{person.url}}</td>
+                    <td><a href="/delete/{{person.id}}">Delete</a></td>
+                    <td><a href="/agenda/edit/{{person.id}}">Edit</a></td>
+                </tr>
+            {% endfor %}
+            </table>
+        {% else %}
+            <p>No people in the database</p>
+        {% endif %}
+    </div>
+{% endblock content %}
+
+
+
+
+
+
+
