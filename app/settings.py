@@ -26,7 +26,9 @@ SECRET_KEY = '&&(sbmzm2r1495nwf6o%@^&pe@r)gta4)b7j3pshlh56y9h@*e'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+#ALLOWED_HOSTS = (
+#    'localhost',
+#)
 
 # Application definition
 
@@ -40,13 +42,11 @@ INSTALLED_APPS = [
     'agenda',
 ]
 
-AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-)
+
 
 
 MIDDLEWARE_CLASSES = [
-    'django.middleware.security.SecurityMiddleware',
+    #'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -56,48 +56,13 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'teste.urls'
+ROOT_URLCONF = 'app.urls'
 
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        #'DIRS': [],
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
 
-WSGI_APPLICATION = 'teste.wsgi.application'
+WSGI_APPLICATION = 'app.wsgi.application'
 
 
 
-# Database
-# https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-#MySQL 5.5 database added.  Please make note of these credentials:
-#    python-axeldeveloper.rhcloud.com
-#   Root User: admin6fxy2Hv
-#   Root Password: WMfgr1XAqIE9
-#   Database Name: python
-
-# Connection URL: mysql://$OPENSHIFT_MYSQL_DB_HOST:$OPENSHIFT_MYSQL_DB_PORT/
-
-# You can manage your new MySQL database by also embedding phpmyadmin.
-#The phpmyadmin username and password will be the same as the MySQL credentials above
-
-#Please make note of these MySQL credentials again:
-#  Root User: admin6fxy2Hv
-#  Root Password: WMfgr1XAqIE9
-# URL: https://python-axeldeveloper.rhcloud.com/phpmyadmin/
-
-# Add a public key
 
 DATABASES = {
     'default': {
@@ -117,23 +82,7 @@ DATABASES = {
 #}
 
 
-# Password validation
-# https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
 
 
 # Internationalization
@@ -157,4 +106,13 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
+)
+
+TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates')
+
+TEMPLATE_DIRS = (
+    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    TEMPLATE_PATH,
 )

@@ -12,7 +12,7 @@ from .models import Contato
 
 
 def index(request):
-    contato_list = Contato.objects.order_by('-data_atualizacao')[:5]
+    contato_list = Contato.objects.order_by('data_atualizacao')[:5]
     context = {'contato_list': contato_list}
     return render(request, 'contato/index.html', context)
 
