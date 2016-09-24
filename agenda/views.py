@@ -7,7 +7,6 @@ from django.utils import timezone
 from django.template import loader, Context, RequestContext
 
 
-
 from .models import Contato
 
 
