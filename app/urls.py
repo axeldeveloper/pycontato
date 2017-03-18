@@ -19,5 +19,8 @@ from agenda import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^agenda/', include('agenda.urls')),
+    url(r'^synesp/', include('synesp.urls')),
+
+
     #url(r'^agenda/edit/(?P<contato_id>\d+)$', views.edit, name='edit')
 ]

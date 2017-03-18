@@ -131,6 +131,14 @@ EXECUTAR NO SERVIDOR
 "8000 e a porta que poser ser escolhido"
 python manage.py runserver 8000
 
+INCLUINDO APPS
+--------------
+
+DIRETORIO = D:\Desenvolvimento\ProjetoPython\pycontato>
+"execute o comando"
+python ./manage.py startapp nome_app
+
+
 
 
 
@@ -158,3 +166,14 @@ especifique o seu endereço de e-mail e senha
 
 manage.py@teste > superuser 
 manage.py@teste > createsuperuser 
+
+
+PACOTES NO WINDOWS 
+------------------
+Newer versions of Python for Windows come with the pip package manager. (source)
+
+pip is already installed if you're using Python 2 >=2.7.9 or Python 3 >=3.4
+Use that to install packages:
+
+cd C:/Python/Scripts/
+pip.exe install <package-name>
