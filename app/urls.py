@@ -15,12 +15,23 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from agenda import views
-urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^agenda/', include('agenda.urls')),
-    url(r'^synesp/', include('synesp.urls')),
+from django.conf.urls.static import static
+from django.conf import settings
+from django.conf.urls import patterns, include, url
 
 
-    #url(r'^agenda/edit/(?P<contato_id>\d+)$', views.edit, name='edit')
-]
+
+admin.autodiscover()
+
+
+urlpatterns = patterns('',
+    url(r'^admin/',  include(admin.site.urls), name='administrador'),    # PAGINA DE ADMINISTRADOR
+	url(r'^agenda/', include('agenda.urls',    namespace='agenda')),     # PAGINA DE AGENDA E SUAS ROTAS
+    url(r'^synesp/', include('synesp.urls'))
+
+)
+
+#urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+

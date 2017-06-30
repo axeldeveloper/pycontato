@@ -1,17 +1,68 @@
 {% extends "base.html" %}
 {% block content %}
-<form method="post">
-    {% csrf_token %}
-    <label>Name: </label>
-    <input name="nome" value="{{contato.nome}}">
-    <br>
-    <label>Phone: </label>
-     <input name="telefone" value="{{contato.telefone}}">
-    <br>
-    <label>Url: </label>
-   <input name="url" value="{{contato.url}}">
-    <br>
-     <input type="hidden" name="id" value="{{contato.id}}">
-    <input type="submit" value="Submit">
-</form>
+<div class="flex-grid" id="cell-content" >    
+    <!-- With icon (font)  <div class="cell auto-size padding20 bg-white" id="cell-content"> -->
+    <div class="panel">
+        <div class="heading">
+            <span class="icon mif-drive-eta place-right"></span>
+            <span class="title">Novo Registro</span>
+        </div>
+        <div class="content ">
+            <form method="post" data-role="validator" data-on-error-input="notifyOnErrorInput" data-show-error-hint="false">
+             {% csrf_token %}
+                <div class="content-form" data-text="Agenda">
+                    <div class="grid">
+                        <div class="row11 cells111">                                                                                  
+                            <div class="cell11">
+                                <label class="block">Nome</label>
+                                <div class="input-control text full-size">
+                                    <input name="nome" value="{{contato.nome}}"
+                                            data-validate-func="minlength"
+                                            data-validate-arg="6"
+                                            data-validate-hint="Este campo deve conter no minimo 6 caracteres!"
+                                        type="text">
+                                    <span class="input-state-error mif-warning"></span>
+                                    <span class="input-state-success mif-checkmark"></span>
+                                </div>
+                            </div>
+                                                
+                            <div class="cell11">
+                                <label class="block">Telefone</label>
+                                <div class="input-control text full-size">
+                                    <input id="telefone" name="telefone" value="{{contato.telefone}}"
+                                        data-validate-func="minlength"
+                                        data-validate-arg="10"
+                                        data-validate-hint="Este campo deve conter no minimo 6 caracteres!"
+                                        type="text">
+                                    <span class="input-state-error mif-warning"></span>
+                                    <span class="input-state-success mif-checkmark"></span>
+                                </div>
+                            </div>
+
+                            <div class="cell11">
+                                <label class="block">URL</label>
+                                <div class="input-control text full-size">
+                                    <input id="url" name="url" value="{{contato.url}}"
+                                        data-validate-func="minlength"
+                                        data-validate-arg="10"
+                                        data-validate-hint="Este campo deve conter no minimo 6 caracteres!"
+                                        type="text">
+                                    <span class="input-state-error mif-warning"></span>
+                                    <span class="input-state-success mif-checkmark"></span>
+                                </div>
+                            </div>                            
+                        </div>
+                        <div>
+                            <input type="hidden" name="id" value="{{contato.id}}">
+                            <button  type="submit" class="button success">
+                                <span class="mif-checkmark"></span>
+                                Gravar
+                            </button>
+                        </div>                                                              
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock content %}

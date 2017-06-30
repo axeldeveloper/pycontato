@@ -2,73 +2,83 @@
 
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.http import Http404
 from django.utils import timezone
 from django.template import loader, Context, RequestContext
-
-
+from django.db import IntegrityError, transaction
 from .models import Contato
 
 
-def index(request):
+def list(request):
     contato_list = Contato.objects.order_by('data_atualizacao')[:5]
     context = {'contato_list': contato_list}
-    return render(request, 'contato/index.html', context)
+    return render(request, 'agenda/index.html', context)
 
-def detail(request, contato_id):
+def create(request):
+    
+    # If this is a post request we insert the Contato
+
+    if request.method == 'POST':
+        try:
+            p = Contato(nome=request.POST['nome'],
+                        telefone=request.POST['telefone'],
+                        url=request.POST['url'],
+                        data_criacao=timezone.now(),
+                        data_atualizacao=timezone.now())
+            p.save()
+            return  HttpResponseRedirect('/agenda/list')
+        except IntegrityError: 
+            raise Http404('INTEGRIDADE VIOLADA - Problema ao gravar o registro')
+    else:
+
+        return render(request, 'contato/criar.html')
+
+def update(request, id):
+    # If this is a post request we update the Contato
+
     try:
-        contato = Contato.objects.get(pk=contato_id)
+        contato = Contato.objects.get(pk=id)
+        if request.method == 'POST':
+            contato.nome = request.POST['nome']
+            contato.telefone = request.POST['telefone']
+            contato.url = request.POST['url']
+            contato.data_atualizacao =timezone.now()
+            contato.save()
+            return  HttpResponseRedirect('/agenda/list')
+        else: 
+            t = loader.get_template('contato/criar.html')
+            c = RequestContext(request, {
+                'contato': contato
+            })
+            return HttpResponse(t.render(c))
+
     except Contato.DoesNotExist:
         raise Http404("Question does not exist")
-        # Redisplay the question voting form.
-        #return render(request, 'polls/detail.html', {
-        #    'contato': contato,
-        #    'error_message': "You didn't select a choice.",
-        #})
+    
+    
+    
+
+    
 
 
-    return render(request, 'contato/detail.html', {
+
+def view(request, id):
+    try:
+        contato = Contato.objects.get(pk=id)
+    except Contato.DoesNotExist:
+        raise Http404("Question does not exist")
+       
+    return render(request, 'agenda/view.html', {
         'contato': contato,
         'error_message': "You didn't select a choice.",})
 
-def results(request, contato_id):
-    response = "You're looking at the results of question %s."
-    return HttpResponse(response % contato_id)
 
-def vote(request, contato_id):
-    return HttpResponse("You're voting on question %s." % contato_id)
 
-def criar(request):
-    # If this is a post request we insert the person
-    if request.method == 'POST':
-        p = Contato(
-            nome=request.POST['name'],
-            telefone=request.POST['phone'],
-            url=request.POST['url'],
-            data_criacao =timezone.now() ,
-            data_atualizacao =timezone.now() ,
-        )
-        p.save()
+def vote(request, id):
+    return HttpResponse("You're voting on question %s." % id)
 
-    #t = loader.get_template('inser.html')
-    #c = RequestContext(request)
-    #return HttpResponse(t.render(c))
-    return render(request, 'contato/criar.html')
 
-def edit(request, contato_id):
-    p = Contato.objects.get(pk=contato_id)
-    if request.method == 'POST':
-        p.nome = request.POST['name']
-        p.telefone = request.POST['telefone']
-        p.url = request.POST['url']
-        p.data_criacao =timezone.now()
-        p.data_atualizacao =timezone.now()
-        p.save()
-    t = loader.get_template('contato/criar.html')
-    c = RequestContext(request, {
-        'contato': p
-    })
-    return HttpResponse(t.render(c))
 
 
 # Leave the rest of the views (detail, results, vote) unchanged

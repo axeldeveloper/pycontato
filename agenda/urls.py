@@ -1,13 +1,13 @@
-from django.conf.urls import url
+from django.conf.urls import patterns, url
 
-from . import views
+import agenda.views
 
 app_name = 'agenda'
-urlpatterns = [
-    url(r'^$', views.index, name='index'),
-    url(r'^(?P<contato_id>[0-9]+)/$', views.detail, name='detail'),
-    url(r'^(?P<contato_id>[0-9]+)/results/$', views.results, name='results'),
-    url(r'^(?P<contato_id>[0-9]+)/vote/$', views.vote, name='vote'),
-    url(r'^criar/$', views.criar, name='criar'),
-    url(r'^edit/(?P<contato_id>\d+)$', views.edit, name='edit')
-]
+
+urlpatterns = patterns('agenda.views',
+    url(r'^list/$',   agenda.views.list, name='list'),  
+    url(r'^create/$', agenda.views.create, name='create'),
+    url(r'^update/(?P<id>\d+)$', agenda.views.update, name='update'),
+    url(r'^view/(?P<id>\d+)$', agenda.views.view, name='detail'),
+    url(r'^(?P<id>[0-9]+)/vote/$', agenda.views.vote, name='vote'),
+)

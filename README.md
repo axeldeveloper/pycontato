@@ -31,7 +31,7 @@ $ git pull origin master
 
 Formato do comando:
 git pull apelidoDaOrigem apelidoParaDestino
-Saída do comando:
+Saï¿½da do comando:
 remote: Counting objects: 52278, done.
   remote: Compressing objects: 100% (10917/10917), done.
   remote: Total 52278 (delta 40975), reused 51715 (delta 40669)
@@ -44,23 +44,23 @@ Usar o git
 ----------------------------------------------------------------------------
 $ touch testegit
 
-Adicionar as alterações
+Adicionar as alteraï¿½ï¿½es
 ----------------------------------------------------------------------------
 $ git add testegit
 $ git add .
-Comitar as alterações
+Comitar as alteraï¿½ï¿½es
 ----------------------------------------------------------------------------
 $ git commit -m "mensagem teste para o tutorial"
-Saída do comando:
+Saï¿½da do comando:
 [master de2f5ce] teste para o tutorial
   1 files changed, 1 insertions(+), 0 deletions(-)
   create mode 100644 testegit
 
 
-Enviar(push=empurrar) as alterações:
+Enviar(push=empurrar) as alteraï¿½ï¿½es:
 ----------------------------------------------------------------------------
 $ git push origin master
-Saída do comando:
+Saï¿½da do comando:
 ounting objects: 4, done.
   Delta compression using up to 2 threads.
   Compressing objects: 100% (2/2), done.
@@ -72,19 +72,19 @@ ounting objects: 4, done.
 
 -----------------------------------------------------------------------------
 Se durante o tempo em que fez o pull e o push outra pessoa que tamb?m
-participe do projeto  fez alterações o push será rejeitado. Então é
-necessário atualizar o projeto local antes de
-enviar novas alterações
+participe do projeto  fez alteraï¿½ï¿½es o push serï¿½ rejeitado. Entï¿½o ï¿½
+necessï¿½rio atualizar o projeto local antes de
+enviar novas alteraï¿½ï¿½es
 
 $ git fetch origin
 ------------------------------------------------------------------------------
-Atualizar antes de enviar é uma boa prática a ser seguida para quem usa svn ou
-cvs e  obrigatória no git.
+Atualizar antes de enviar ï¿½ uma boa prï¿½tica a ser seguida para quem usa svn ou
+cvs e  obrigatï¿½ria no git.
 
-4)Pronto, confira as alterações no navegador acessando o endereço do
+4)Pronto, confira as alteraï¿½ï¿½es no navegador acessando o endereï¿½o do
    projeto (http://github.com/codexico/tutorial-github neste exemplo).
 
-Dica final: para que não precise digitar sempre a senha do ssh siga os
+Dica final: para que nï¿½o precise digitar sempre a senha do ssh siga os
 passos desse link: http://help.github.com/working-with-key-passphrases/
 
 -------------------------------------------------------------------------------
@@ -115,7 +115,7 @@ pip install virtualenv
 
 COMANDOS  -> CND
 ================
-NAVEGAR ATÉ O DIRETORIO 
+NAVEGAR ATï¿½ O DIRETORIO 
 
 "execute o comando"
 python manage.py migrate
@@ -153,16 +153,16 @@ Criando Bancos
 --------------
 runserver     = + porta 8000
 
-manage.py@teste > makemigration         =  criar tabelas para o novo modelo
+manage.py@teste > makemigrations         =  criar tabelas para o novo modelo
 manage.py@teste > sqlmigrate polls 0001 = e
 manage.py@teste > migrate               =  Finalmente, execute o comando migrar para 
                          realmente criar essas tabelas em seu banco
                          
-Funções administrativas
+Funï¿½ï¿½es administrativas
 -----------------------
-Primeira coisa, criar um superusuário. Para fazer isso, digite o 
-comando superusuário no console manage.py, 
-especifique o seu endereço de e-mail e senha
+Primeira coisa, criar um superusuï¿½rio. Para fazer isso, digite o 
+comando superusuï¿½rio no console manage.py, 
+especifique o seu endereï¿½o de e-mail e senha
 
 manage.py@teste > superuser 
 manage.py@teste > createsuperuser 
