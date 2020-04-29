@@ -1,36 +1,152 @@
 {% extends "base.html" %}
 {% block content %}
-    <div class="col-md-12">
-        <h2>
-            Lista de <small> Contatos </small>
-        </h2>
-        {% if contato_list %}
-            <table class="table table-striped">
+
+
+<script>
+     var url = "/contato/list/";
+     var customButtons = [
+        {
+            html: "<span data-role='hint' data-hint-text='Incluir registro' class='mif-plus'></span>",
+            cls: "success",
+            onclick: function(){
+                window.location.assign( "/contato/create" );
+            }
+        },
+        {
+            html: "<span data-role='hint' data-hint-text='Listar contatos' class='mif-menu'></span>",
+            cls: "alert",
+            onclick: function(){
+                window.location.assign( url );
+            }
+        },        
+        {
+            html: "<span data-role='hint' data-hint-text='Imprmir form' class='mif-print'></span>",
+            cls: "warning",
+            onclick: function(){
+                printJS('tblGeral', 'html')
+            }
+        }
+    ];
+</script>
+
+
+
+<div data-role="panel"
+        data-title-caption="Lista de Contatos"
+        data-collapsible="true"
+        data-custom-buttons="customButtons">
+
+    <!-- 
+    <div class="toolbar">
+        <a href="{% url 'agenda:create' %}" class="tool-button success text-button">
+            Incluir
+        </a>
+        <div class="split-button ml-20">
+            <button class="button">Opçoes</button>
+            <button class="split dropdown-toggle"></button>
+            <ul class="d-menu" data-role="dropdown">
+                <li><a href="#">CSV</a></li>
+                <li><a href="#">PDF</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Excel</a></li>
+            </ul>
+        </div>
+    </div>
+    -->
+
+
+
+    <div class="table-search-block">
+        <div class="input">
+            <input type="text" data-role-input="true" data-role="input" class="">
+            <div class="button-group">
+                <button class="button input-clear-button" tabindex="-1" type="button">
+                    <span class="default-icon-cross"></span>
+                </button>
+            </div>
+            <div class="prepend">Search:</div>
+        </div>
+    </div>
+    
+    <hr>
+
+    {% if contato_list %}
+        <table class="table striped table-border" id="tblGeral" data-role="table1">
+            <thead>
                 <tr>
                     <th>Nome</th>
                     <th>Telefone</th>
                     <th>Site</th>
-                    <th colspan="2">#</th>
+                    <th colspan="3">Opçoes</th>
                 </tr>
-            {% for person in contato_list %}
+            </thead>
+            <tbody> 
+                {% for person in contato_list %}
                 <tr>
-                    <td>{{person.nome}}</td>
+                    <td>{{person.nome|capfirst }}</td>
                     <td>{{person.telefone}}</td>
                     <td>{{person.url}}</td>
-                    <td><a href="/delete/{{person.id}}">Delete</a></td>
-                    <td><a href="/agenda/edit/{{person.id}}">Edit</a></td>
+                    <td>
+                        <a class="button primary" href="/contato/view/{{person.id}}">
+                            <span class="mif-file-empty mif-2x"></span> 
+                        </a>
+                    </td>
+                    <td>
+                        <a class="button primary" href="/contato/update/{{person.id}}">
+                            <span class="mif-checkmark mif-2x"></span> 
+                        </a>
+                    </td>
+                    <td >
+                        <a href="#"  onclick="openDemoDialogActions('{{person.id}}')" class="button alert">
+                            <span class="mif-bin mif-2x"></span>                            
+                        </a>
+                    </td>
+                    
                 </tr>
-            {% endfor %}
-            </table>
-        {% else %}
-            <p>No people in the database</p>
-        {% endif %}
-    </div>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Sem registro</p>
+    {% endif %}
+
+
+</div>
+
+    
+    <script>
+        function openDemoDialogActions(id){
+            var url = "/contato/delete/"+id;
+            Metro.dialog.create({
+                title: "INFORMAÇÃO?",
+                content: "<div>Deseja ralmente exluir o registro...</div>",
+                actions: [
+                    {
+                        caption: "Confirmar",
+                        cls: "js-dialog-close alert",
+                        onclick: function(){
+                            window.location.assign( url );
+                        }
+                    },
+                    {
+                        caption: "Cancelar",
+                        cls: "js-dialog-close",
+                        onclick: function(){
+                            alert("You clicked Disagree action");
+                        }
+                    }
+                ]
+            });
+        }
+
+        var AddOnclick = function(){
+                printJS({ printable: 'frmGeral', 
+                       type: 'html', 
+                       header: 'PrintJS - Formulario de Contato' })
+        }
+
+
+    </script>
+
 {% endblock content %}
-
-
-
-
-
-
 

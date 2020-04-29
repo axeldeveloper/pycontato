@@ -13,24 +13,26 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+
+#from django.conf.urls import *
+#from django.conf.urls.static import static
+#from django.conf import settings
+#from django.conf.urls import include, url
+#from django.contrib import admin
+
 from django.conf.urls import include, url
 from django.contrib import admin
-from django.conf.urls.static import static
-from django.conf import settings
-from django.conf.urls import patterns, include, url
-
-
-
 admin.autodiscover()
 
+urlpatterns = [
+    url(r'^admin/',  admin.site.urls),
+    url(r'^contato/', include('agenda.urls',    namespace='agenda')),
+    url(r'^synesp/',  include('synesp.urls'))
 
-urlpatterns = patterns('',
-    url(r'^admin/',  include(admin.site.urls), name='administrador'),    # PAGINA DE ADMINISTRADOR
-	url(r'^agenda/', include('agenda.urls',    namespace='agenda')),     # PAGINA DE AGENDA E SUAS ROTAS
-    url(r'^synesp/', include('synesp.urls'))
+]
 
-)
-
+	#url(r'^agenda/', include('agenda.urls',    namespace='agenda')),
+    #url(r'^synesp/', include('synesp.urls'))
 #urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

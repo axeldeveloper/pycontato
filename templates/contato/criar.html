@@ -1,68 +1,96 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="flex-grid" id="cell-content" >    
-    <!-- With icon (font)  <div class="cell auto-size padding20 bg-white" id="cell-content"> -->
-    <div class="panel">
-        <div class="heading">
-            <span class="icon mif-drive-eta place-right"></span>
-            <span class="title">Novo Registro</span>
-        </div>
-        <div class="content ">
-            <form method="post" data-role="validator" data-on-error-input="notifyOnErrorInput" data-show-error-hint="false">
-             {% csrf_token %}
-                <div class="content-form" data-text="Agenda">
-                    <div class="grid">
-                        <div class="row11 cells111">                                                                                  
-                            <div class="cell11">
-                                <label class="block">Nome</label>
-                                <div class="input-control text full-size">
-                                    <input name="nome" value="{{contato.nome}}"
-                                            data-validate-func="minlength"
-                                            data-validate-arg="6"
-                                            data-validate-hint="Este campo deve conter no minimo 6 caracteres!"
-                                        type="text">
-                                    <span class="input-state-error mif-warning"></span>
-                                    <span class="input-state-success mif-checkmark"></span>
-                                </div>
-                            </div>
-                                                
-                            <div class="cell11">
-                                <label class="block">Telefone</label>
-                                <div class="input-control text full-size">
-                                    <input id="telefone" name="telefone" value="{{contato.telefone}}"
-                                        data-validate-func="minlength"
-                                        data-validate-arg="10"
-                                        data-validate-hint="Este campo deve conter no minimo 6 caracteres!"
-                                        type="text">
-                                    <span class="input-state-error mif-warning"></span>
-                                    <span class="input-state-success mif-checkmark"></span>
-                                </div>
-                            </div>
 
-                            <div class="cell11">
-                                <label class="block">URL</label>
-                                <div class="input-control text full-size">
-                                    <input id="url" name="url" value="{{contato.url}}"
-                                        data-validate-func="minlength"
-                                        data-validate-arg="10"
-                                        data-validate-hint="Este campo deve conter no minimo 6 caracteres!"
-                                        type="text">
-                                    <span class="input-state-error mif-warning"></span>
-                                    <span class="input-state-success mif-checkmark"></span>
-                                </div>
-                            </div>                            
-                        </div>
-                        <div>
-                            <input type="hidden" name="id" value="{{contato.id}}">
-                            <button  type="submit" class="button success">
-                                <span class="mif-checkmark"></span>
-                                Gravar
-                            </button>
-                        </div>                                                              
-                    </div>
+<script>
+     var url = "/contato/list/";
+    var customButtons = [
+        {
+            html: "<span data-role='hint' data-hint-text='Listar contatos' class='mif-menu'></span>",
+            cls: "alert",
+            onclick: function(){
+                window.location.assign( url );
+            }
+        },        
+        {
+            html: "<span data-role='hint' data-hint-text='Imprmir form' class='mif-print'></span>",
+            cls: "warning",
+            onclick: function(){
+                printJS({ printable: 'frmGeral', 
+                       type: 'html', 
+                       header: 'PrintJS - Formulario de Contato' })
+            }
+        }
+    ];
+</script>
+
+<h2 class="mt-2">  
+  Inserir <small> Contatos </small>
+</h2>
+
+
+
+<div class="mb-20" id="ce" >   
+
+    <div data-role="panel"
+        data-title-caption="Contatos"
+        data-collapsible="true"
+        data-custom-buttons="customButtons">
+
+        <form method="post" id="frmGeral" data-role="validator" data-on-error-input="notifyOnErrorInput" data-show-error-hint="false">
+            {% csrf_token %}
+           
+            <div class="content-form" data-text="Agenda">                
+                <div class="form-group">
+                    <label class="block">Nome</label>                  
+                    <input name="nome" 
+                        placeholder="Informe o nome"
+                        value="{{contato.nome}}"
+                        data-validate="required" 
+                        data-role="materialinput"
+                        type="text">  
+                        <span class="invalid_feedback">
+                            Informe o Nome
+                        </span>               
                 </div>
-            </form>
-        </div>
+                                           
+                <div class="form-group">
+                    <label class="block">Telefone</label>                    
+                    <input id="telefone" name="telefone" value="{{contato.telefone}}"
+                        data-validate="required"
+                        placeholder="Telefone (xx) xxxxx-xxxx" 
+                        data-role="materialinput"                   
+                        type="text">
+                        <span class="invalid_feedback">
+                            Informe o Telefone
+                        </span>
+                </div>
+    
+                <div class="form-group">
+                    <label class="block">URL</label>
+                    <input id="url" name="url" value="{{contato.url}}"
+                        data-validate="required"
+                        data-role="materialinput"
+                        type="text">
+                </div>                            
+                    
+                <div class="form-group">
+                    <input type="hidden" name="id" value="{{contato.id}}">
+                    <button  type="submit" class="button success">
+                        <span class="mif-checkmark"></span>
+                        Gravar
+                    </button>
+                </div>                                                              
+                
+            </div>
+        </form>
+     
     </div>
+
+
+    
 </div>
+
+
+
+
 {% endblock content %}

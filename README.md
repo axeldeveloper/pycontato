@@ -1,91 +1,36 @@
-PROJETO PYTHON - AGENDA DE CONTATO
-==================================
-
-url = 
-
-GIT = https://github.com/axeldeveloper/pycontato
+# PROJETO PYTHON - AGENDA DE CONTATO
 
 
-Clone aqui https://github.com/axeldeveloper/pycontato.git
+# Python and pipenv 
+apt-get install python3-mysqldb libmysqlclient-dev python-dev
+- pip3 install pipenv
+pipenv install django==2.2.0 
+pipenv install mysqlclient 
+
+- pipenv shell  `execute to path project`
+✔ Successfully created virtual environment! 
+Virtualenv location: /home/axel/.local/share/virtualenvs/pycontato-TG8PuaBm
+Launching subshell in virtual environment…
+ . /home/axel/.local/share/virtualenvs/pycontato-TG8PuaBm/bin/activate
 
 
-git config --global user.name "nome"
-git config --global user.email blabla@gmail.com
-----------------------------------------------------------------------------
-
-$ git init
-
-	Initialized empty Git repository in /nomedodiretorio/.git/
-
-$ ls .git
-----------------------------------------------------------------------------
-branches config description FETCH_HEAD HEAD hooks index info logs
-objects refs
-
-----------------------------------------------------------------------------
-$ git remote add origin git@github.com:codpuer/tutorial-github.git
-
-Baixar(pull=puxar) o projeto:
-----------------------------------------------------------------------------
-$ git pull origin master
-
-Formato do comando:
-git pull apelidoDaOrigem apelidoParaDestino
-Sa�da do comando:
-remote: Counting objects: 52278, done.
-  remote: Compressing objects: 100% (10917/10917), done.
-  remote: Total 52278 (delta 40975), reused 51715 (delta 40669)
-  Receiving objects: 100% (52278/52278), 8.33 MiB | 189 KiB/s, done.
-  Resolving deltas: 100% (40975/40975), done.
-  From git@github.com:codepure/tutorial-github.git
-  * branch  master -> FETCH_HEAD
-
-Usar o git
-----------------------------------------------------------------------------
-$ touch testegit
-
-Adicionar as altera��es
-----------------------------------------------------------------------------
-$ git add testegit
-$ git add .
-Comitar as altera��es
-----------------------------------------------------------------------------
-$ git commit -m "mensagem teste para o tutorial"
-Sa�da do comando:
-[master de2f5ce] teste para o tutorial
-  1 files changed, 1 insertions(+), 0 deletions(-)
-  create mode 100644 testegit
 
 
-Enviar(push=empurrar) as altera��es:
-----------------------------------------------------------------------------
-$ git push origin master
-Sa�da do comando:
-ounting objects: 4, done.
-  Delta compression using up to 2 threads.
-  Compressing objects: 100% (2/2), done.
-  Writing objects: 100% (3/3), 288 bytes, done.
-  Total 3 (delta 1), reused 0 (delta 0)
-  To git@github.com:codexico/tutorial-github.git
-  3be4c21..de2f5ce&nbsp; master -> master
 
 
------------------------------------------------------------------------------
-Se durante o tempo em que fez o pull e o push outra pessoa que tamb?m
-participe do projeto  fez altera��es o push ser� rejeitado. Ent�o �
-necess�rio atualizar o projeto local antes de
-enviar novas altera��es
 
+
+# git
+  - $ git init
+  - $ git config --global user.name "nome"
+  - $ git config --global user.email blabla@gmail.com
+  - $ ls .git
+  - $ git remote add origin git@github.com:codpuer/tutorial-github.git
+
+## Baixar(pull=puxar) o projeto:
+  $ git pull origin master
 $ git fetch origin
-------------------------------------------------------------------------------
-Atualizar antes de enviar � uma boa pr�tica a ser seguida para quem usa svn ou
-cvs e  obrigat�ria no git.
 
-4)Pronto, confira as altera��es no navegador acessando o endere�o do
-   projeto (http://github.com/codexico/tutorial-github neste exemplo).
-
-Dica final: para que n�o precise digitar sempre a senha do ssh siga os
-passos desse link: http://help.github.com/working-with-key-passphrases/
 
 -------------------------------------------------------------------------------
 comando do python

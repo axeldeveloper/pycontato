@@ -7,7 +7,7 @@ from sinesp_client import SinespClient
 def criar(request):
     # If this is a post request we insert the person
 
-    result = 1;
+    result = 1
     if request.method == 'POST':
         sc = SinespClient()
         #sc = SinespClient(proxy_address='127.0.0.1', proxy_port=8000)

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+<script>
+    var customButtons = [        
+        {
+            html: "<span data-role='hint' data-hint-text='Incluir registro' class='mif-plus'></span>",
+            cls: "alert",
+            onclick: function(){
+                window.location.assign( "/contato/create" );
+            }
+        },
+        {
+            html: "<span data-role='hint' data-hint-text='Imprmir form' class='mif-print'></span>",
+            cls: "warning",
+            onclick: function(){
+                printJS({ printable: 'frmGeral', 
+                       type: 'html', 
+                       header: 'PrintJS - Formulario de Contato' })
+            }
+        }
+    ];
+</script>
+<h2 class="mt-2">  
+    Visualizar <small> Contatos </small>
+</h2>
+  
+<div class="mb-20" id="ce" >   
+
+    <div data-role="panel"
+        data-title-caption="Contatos"
+        data-collapsible="true"
+        data-custom-buttons="customButtons">
+
+        <div id="frmGeral"  class="row">
+            <div class="cell-8">
+                <p>Name:  {{contato.nome}}</p>
+            </div>
+            
+            <div class="cell-8">
+                <p>Telefone:  {{contato.telefone}}</p>
+            </div>
+            
+            <div class="cell-8">
+                <p>Url:  {{contato.url}}</p>
+            </div>
+        </div>
+     
+    </div>
+
+
+    
+</div>
+
+
+{% endblock content %}
