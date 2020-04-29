@@ -1,12 +1,9 @@
-# Create your views here.
-
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.utils import timezone
 from django.template import loader, Context, RequestContext
 from django.db import IntegrityError, transaction
 from .models import Contato
-
 
 
 def list(request):
@@ -45,14 +42,9 @@ def update(request, id):
             contato.data_atualizacao =timezone.now()
             contato.save()
             return  HttpResponseRedirect('/contato/list')
-        else: 
-            # t = loader.get_template('contato/criar.html')
-            # c = RequestContext(request, {
-            #    'contato': contato
-            # })
+        else:           
             context = {'contato': contato}          
             return render(request, 'contato/criar.html', context)
-            #return HttpResponse(t.render(c))
 
     except Contato.DoesNotExist:
         raise Http404("Question does not exist")

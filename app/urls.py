@@ -30,10 +30,4 @@ urlpatterns = [
     url(r'^synesp/',  include('synesp.urls'))
 
 ]
-
-	#url(r'^agenda/', include('agenda.urls',    namespace='agenda')),
-    #url(r'^synesp/', include('synesp.urls'))
 #urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-
-

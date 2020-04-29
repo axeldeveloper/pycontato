@@ -4,4 +4,7 @@ from django.apps import AppConfig
 
 
 class AgendaConfig(AppConfig):
+    """
+    app name
+    """
     name = 'agenda'
